@@ -26,6 +26,7 @@ const (
 
 type ShareInfo struct {
 	Name      string             `json:"name" tf:"force_new"`
+	Comment   string             `json:"comment,omitempty"`
 	Objects   []SharedDataObject `json:"objects,omitempty" tf:"alias:object"`
 	CreatedAt int64              `json:"created_at,omitempty" tf:"computed"`
 	CreatedBy string             `json:"created_by,omitempty" tf:"computed"`

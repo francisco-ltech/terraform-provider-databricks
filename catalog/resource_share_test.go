@@ -183,7 +183,8 @@ func TestCreateShare(t *testing.T) {
 				Method:   "POST",
 				Resource: "/api/2.1/unity-catalog/shares",
 				ExpectedRequest: ShareInfo{
-					Name: "a",
+					Name:    "a",
+					Comment: "a comment",
 					Objects: []SharedDataObject{
 						{
 							Name:           "main.a",
@@ -232,7 +233,8 @@ func TestCreateShare(t *testing.T) {
 				Method:   "GET",
 				Resource: "/api/2.1/unity-catalog/shares/a?include_shared_data=true",
 				Response: ShareInfo{
-					Name: "a",
+					Name:    "a",
+					Comment: "a comment",
 					Objects: []SharedDataObject{
 						{
 							Name:           "main.a",
@@ -252,6 +254,7 @@ func TestCreateShare(t *testing.T) {
 		Create:   true,
 		HCL: `
 			name = "a"
+			comment = "a comment"
 			object {
 				name = "main.a"
 				comment = "c"
@@ -273,7 +276,8 @@ func TestUpdateShare(t *testing.T) {
 				Method:   "GET",
 				Resource: "/api/2.1/unity-catalog/shares/abc?include_shared_data=true",
 				Response: ShareInfo{
-					Name: "abc",
+					Name:    "abc",
+					Comment: "u comment",
 					Objects: []SharedDataObject{
 						{
 							Name:           "d",
@@ -322,7 +326,8 @@ func TestUpdateShare(t *testing.T) {
 				Method:   "GET",
 				Resource: "/api/2.1/unity-catalog/shares/abc?include_shared_data=true",
 				Response: ShareInfo{
-					Name: "abc",
+					Name:    "abc",
+					Comment: "u comment",
 					Objects: []SharedDataObject{
 						{
 							Name:           "a",
@@ -352,6 +357,7 @@ func TestUpdateShare(t *testing.T) {
 		},
 		HCL: `
 			name = "abc"
+			comment = "u comment"
 			object {
 				name = "a"
 				comment = "c"
